@@ -4,10 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
     <title>Giphy-API</title>
 </head>
 <body>
+    <div id="buttons"></div>
+    <form>
+        <h1>Add an Animal!</h1>
+        <input type="text" id="animal-input">
+        <input id="add-animal" type="submit" value="Add an Animal!">
+    </form>
     <script>
+        var topics = ["Lion", "Tiger", "Bear"]
+        var queryURL = $.get("https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=2OY7m3cBXCQU3LFfUVqHQFz7CjJEfvLg&limit=10");
+        queryURL.done(function(data) { console.log("success got data", data); });
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+        function renderButtons(){
+            $("#buttons").empty();
+            for (var i = 0; i < topics.length; i++) {
+            $("#buttons").append("<button>" + topics[i])     
+            }
+        }
+        
+        $("#add-animal").on("click", function(event){
+            event.preventDefault();
+            var animalName = $("#animal-input ").val().trim();
+            topics.push(animalName);
+            renderButtons();
+        });
+
+        renderButtons();
         
     </script>
 </body>
