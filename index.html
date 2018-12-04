@@ -24,7 +24,7 @@
             $("#buttons").empty();
             for (var i = 0; i < topics.length; i++) {
             $("#buttons").append("<button>" + topics[i])
-            $.attr("data-topic", topics[i])
+            $("#buttons").attr("data-topic", topics[i])
             }
         }
         
@@ -37,8 +37,9 @@
 
         renderButtons();
 
-        $("#buttons").on("click", function(){  
-        var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=" + data-topic +
+        $("#buttons").on("click", function(){
+        var animal = $(this).attr("data-topic")  
+        var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=" + animal +
         "&api_key=2OY7m3cBXCQU3LFfUVqHQFz7CjJEfvLg&limit=10");
         xhr.done(function(data) { console.log("success got data", data); });
 				
