@@ -19,13 +19,7 @@
     </form>
     <script>
         var topics = ["Lion", "Tiger", "Bear"]
-        var queryURL = $.get("https://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=2OY7m3cBXCQU3LFfUVqHQFz7CjJEfvLg&limit=10");
-        queryURL.done(function(data) { console.log("success got data", data); });
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
+        
         function renderButtons(){
             $("#buttons").empty();
             for (var i = 0; i < topics.length; i++) {
@@ -41,7 +35,21 @@
         });
 
         renderButtons();
+
+        $("#add-animal").on("click", function(){
+            var animal = $(this).attr("data-animal")            
         
+        var queryURL = $.get("https://api.giphy.com/v1/gifs/search?q=" + animal +
+        "&api_key=2OY7m3cBXCQU3LFfUVqHQFz7CjJEfvLg&limit=10");
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+        })
+
+
+
     </script>
 </body>
 </html>
