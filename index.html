@@ -37,8 +37,9 @@
 
         renderButtons();
 
-                 
-        var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=2OY7m3cBXCQU3LFfUVqHQFz7CjJEfvLg&limit=5");
+        $("#buttons").on("click", function(){  
+        var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=" + data-topic +
+        "&api_key=2OY7m3cBXCQU3LFfUVqHQFz7CjJEfvLg&limit=10");
         xhr.done(function(data) { console.log("success got data", data); });
 				
 
@@ -46,11 +47,7 @@
             url: xhr,
             method: "GET"
         })
-        
-     
-
-
-
+        })
     </script>
 </body>
 </html>
