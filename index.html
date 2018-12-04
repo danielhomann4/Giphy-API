@@ -18,6 +18,7 @@
       <input type="text" id="animal-input" />
       <input id="add-animal" type="submit" value="Add an Animal!" />
     </form>
+    <div id="images"></div>
     <script>
       var topics = ["Lion", "Tiger", "Bear"];
 
@@ -55,6 +56,18 @@
           method: "GET"
         }).then(function(resp) {
           console.log(animal, resp);
+                  //this searches through the data
+          var imageUrl = results[i].images.fixed_height.url;
+
+          //this creates a place to put the images
+          var animalImage = $("<img>");
+          
+          //sets rules for what kind of gifs to get
+          animalImage.attr("src", imageUrl);
+          animalImage.attr("alt", "animal image");
+
+          //this puts images infront of the images that were already there 
+          $("#images").prepend(animalImage);
         });
       });
     </script>
