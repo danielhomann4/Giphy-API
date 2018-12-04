@@ -36,15 +36,15 @@
 
         renderButtons();
 
-        $("#add-animal").on("click", function(){
-            var animal = $(this).attr("data-animal")            
-        
+        $("#add-animal").on("click", function(){           
         var queryURL = $.get("https://api.giphy.com/v1/gifs/search?q=" + animal +
         "&api_key=2OY7m3cBXCQU3LFfUVqHQFz7CjJEfvLg&limit=10");
 
         $.ajax({
             url: queryURL,
             method: "GET"
+        }).then(function(response) {
+            console.log(response);
         })
         })
 
