@@ -23,7 +23,8 @@
         function renderButtons(){
             $("#buttons").empty();
             for (var i = 0; i < topics.length; i++) {
-            $("#buttons").append("<button>" + topics[i])     
+            $("#buttons").append("<button>" + topics[i])
+            $.attr("data-topic", topics[i])
             }
         }
         
@@ -36,17 +37,17 @@
 
         renderButtons();
 
-        $("#add-animal").on("click", function(){           
-        var queryURL = $.get("https://api.giphy.com/v1/gifs/search?q=" + animal +
-        "&api_key=2OY7m3cBXCQU3LFfUVqHQFz7CjJEfvLg&limit=10");
+                 
+        var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=2OY7m3cBXCQU3LFfUVqHQFz7CjJEfvLg&limit=5");
+        xhr.done(function(data) { console.log("success got data", data); });
+				
 
         $.ajax({
-            url: queryURL,
+            url: xhr,
             method: "GET"
-        }).then(function(response) {
-            console.log(response);
         })
-        })
+        
+     
 
 
 
