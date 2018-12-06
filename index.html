@@ -55,19 +55,18 @@
           url: url,
           method: "GET"
         }).then(function(resp) {
+          var results = resp.data;
           console.log(animal, resp);
-                  //this searches through the data
-          var imageUrl = results[i].images.fixed_height.url;
-
-          //this creates a place to put the images
-          var animalImage = $("<img>");
           
-          //sets rules for what kind of gifs to get
-          animalImage.attr("src", imageUrl);
-          animalImage.attr("alt", "animal image");
+          for (var i = 0; i < results.length; i++){
+            var gifDiv = $("<div class='item'>");
+            var rating = results[i].rating;
+            var p = $("<p>").text("Rating: " + rating);
+            var animalImage = $("<img>");
+            animalImage.attr("src", results[i].images.fixed_height.url);
+            $("#images").prepend(animalImage);
+          }
 
-          //this puts images infront of the images that were already there 
-          $("#images").prepend(animalImage);
         });
       });
     </script>
