@@ -54,7 +54,9 @@
         $.ajax({
           url: url,
           method: "GET"
-        }).then(function(resp) {
+        })
+        
+        .then(function(resp) {
           var results = resp.data;
           console.log(animal, resp);
           
@@ -63,12 +65,20 @@
             var rating = results[i].rating;
             var p = $("<p>").text("Rating: " + rating);
             var animalImage = $("<img>");
-            animalImage.attr("src", results[i].images.fixed_height.url);
+            animalImage.attr("src", results[i].images.fixed_height_still.url);
             $("#images").prepend(animalImage);
+            $("#images").on("click", animalImage, function(){
+          if (animalImage === "still"){
+            animalImage.attr("src", results[i].images.fixed_height.url)
           }
-
+        })
+            }
+          });
         });
-      });
+
+        // $("#images").on("click", animalImage, function(){
+        //   if (animalImage === "still"){}
+        // })
     </script>
   </body>
 </html>
